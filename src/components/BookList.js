@@ -8,7 +8,6 @@ import { BookDetail } from './BookDetail'
 export const BookList = ({ token, isLoggedIn }) => {
   const [books, setBooks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [selectedBookId, setSelectedBookId] = useState(null)
 
   useEffect(() => {
     axios
@@ -34,16 +33,6 @@ export const BookList = ({ token, isLoggedIn }) => {
     )
   }
 
-  if (selectedBookId) {
-    return (
-      <BookDetail
-        bookId={selectedBookId}
-        token={token}
-        resetSelected={() => setSelectedBookId(null)}
-      />
-    )
-  }
-
   return (
     <>
       <div className="book-list container-box">
@@ -53,7 +42,6 @@ export const BookList = ({ token, isLoggedIn }) => {
             title={book.title}
             bookId={book.pk}
             featured={book.featured}
-            setSelected={setSelectedBookId}
           />
         ))}
       </div>

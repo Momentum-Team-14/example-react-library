@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-export const BookDetail = ({ token, bookId, resetSelected }) => {
+export const BookDetail = ({ token }) => {
   const [book, setBook] = useState(null)
   const [error, setError] = useState(null)
+  const { bookId } = useParams()
 
   useEffect(() => {
     axios
@@ -21,7 +23,7 @@ export const BookDetail = ({ token, bookId, resetSelected }) => {
   return (
     <>
       {error && <h1 className="title">OH NO 404</h1>}
-      <button className="button is-light is-link mt-3" onClick={resetSelected}>
+      <button className="button is-light is-link mt-3">
         Go Back To Book List
       </button>
       {book && (
