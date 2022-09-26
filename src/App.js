@@ -1,11 +1,11 @@
 import { BookList } from './components/BookList'
 import { Login } from './components/Login'
-import { useState } from 'react'
 import './App.css'
 import axios from 'axios'
 import useLocalStorageState from 'use-local-storage-state'
 import { Routes, Route } from 'react-router-dom'
 import { BookDetail } from './components/BookDetail'
+import Register from './components/Register'
 
 const App = () => {
   const [token, setToken] = useLocalStorageState('libraryToken', null)
@@ -57,12 +57,13 @@ const App = () => {
       <main className="container main">
         {isLoggedIn && (
           <div className="logged-in-message mt-2">
-            <span class="tag is-info is-light">
+            <span className="tag is-info is-light">
               Hello, you're logged in as {username}
             </span>
           </div>
         )}
         <Routes>
+          <Route path="register" element={<Register />} />
           <Route
             path="books"
             element={<BookList token={token} isLoggedIn={isLoggedIn} />}
