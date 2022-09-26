@@ -1,10 +1,14 @@
+import { Link } from 'react-router-dom'
+
 export const BookCard = ({ title, bookId, featured, setSelected }) => {
   return (
-    <div className="book card" id={bookId} onClick={() => setSelected(bookId)}>
+    <div className="book card" id={bookId}>
       <div className="card-content">
         <div className="content">
           <p>
-            {title}
+            <Link to={`./${bookId}`} relative="path">
+              {title}
+            </Link>
             {featured && (
               <>
                 <span className="icon">

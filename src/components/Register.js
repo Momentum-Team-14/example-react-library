@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { Link, Navigate } from 'react-router-dom'
 
-const Register = () => {
+const Register = ({ setAuth, isLoggedIn }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -14,11 +15,17 @@ const Register = () => {
         username: username,
         password: password,
       })
-      .then(console.log)
+      .then((res) => {
+        setAuth(username, res.data.auth_token)
+      })
       .catch((err) => {
         console.log(err)
         setError(err.message)
       })
+  }
+
+  if (isLoggedIn) {
+    return <Navigate to="books" />
   }
 
   return (
@@ -60,6 +67,11 @@ const Register = () => {
           />
         </div>
       </form>
+      <div className="link">
+        <Link to="../" className="button mt-5">
+          Back to Login
+        </Link>
+      </div>
     </div>
   )
 }

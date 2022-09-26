@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 export const BookDetail = ({ token }) => {
   const [book, setBook] = useState(null)
@@ -23,9 +23,9 @@ export const BookDetail = ({ token }) => {
   return (
     <>
       {error && <h1 className="title">OH NO 404</h1>}
-      <button className="button is-light is-link mt-3">
+      <Link to="/" className="button is-light is-link mt-3">
         Go Back To Book List
-      </button>
+      </Link>
       {book && (
         <>
           <div className="book content container-box" id={book.pk}>

@@ -5,6 +5,7 @@ import axios from 'axios'
 import useLocalStorageState from 'use-local-storage-state'
 import { Routes, Route } from 'react-router-dom'
 import { BookDetail } from './components/BookDetail'
+import { BookForm } from './components/BookForm'
 import Register from './components/Register'
 
 const App = () => {
@@ -38,10 +39,6 @@ const App = () => {
 
   const isLoggedIn = username && token
 
-  if (!isLoggedIn) {
-    return <Login setAuth={setAuth} />
-  }
-
   return (
     <>
       <header className="header is-flex is-justify-content-space-between">
@@ -63,12 +60,20 @@ const App = () => {
           </div>
         )}
         <Routes>
-          <Route path="register" element={<Register />} />
+          <Route
+            path="/"
+            element={<Login setAuth={setAuth} isLoggedIn={isLoggedIn} />}
+          />
+          <Route
+            path="register"
+            element={<Register setAuth={setAuth} isLoggedIn={isLoggedIn} />}
+          />
           <Route
             path="books"
             element={<BookList token={token} isLoggedIn={isLoggedIn} />}
           />
           <Route path="books/:bookId" element={<BookDetail token={token} />} />
+          <Route path="books/new" element={<BookForm token={token} />} />
         </Routes>
       </main>
     </>
