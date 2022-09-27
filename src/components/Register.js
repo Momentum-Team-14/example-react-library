@@ -15,9 +15,16 @@ const Register = ({ setAuth, isLoggedIn }) => {
         username: username,
         password: password,
       })
-      .then((res) => {
-        setAuth(username, res.data.auth_token)
-      })
+      .then(() =>
+        axios.post(
+          'https://drf-library-api.herokuapp.com/api/auth/token/login',
+          {
+            username: username,
+            password: password,
+          }
+        )
+      )
+      .then((res) => setAuth(username, res.data.auth_token))
       .catch((err) => {
         console.log(err)
         setError(err.message)
@@ -25,7 +32,7 @@ const Register = ({ setAuth, isLoggedIn }) => {
   }
 
   if (isLoggedIn) {
-    return <Navigate to="books" />
+    return <Navigate to="/books" />
   }
 
   return (
