@@ -7,6 +7,8 @@ import { Routes, Route } from 'react-router-dom'
 import { BookDetail } from './components/BookDetail'
 import { BookForm } from './components/BookForm'
 import Register from './components/Register'
+import NavBar from './components/NavBar'
+import AboutDemo from './components/About'
 
 const App = () => {
   const [token, setToken] = useLocalStorageState('libraryToken', null)
@@ -41,15 +43,9 @@ const App = () => {
 
   return (
     <>
-      <header className="header is-flex is-justify-content-space-between">
+      <header className="header is-flex is-justify-content-space-between has-background-info-dark has-text-white">
         🔖 BookList
-        {isLoggedIn && (
-          <nav>
-            <button className="button" onClick={handleLogout}>
-              Log Out
-            </button>
-          </nav>
-        )}
+        {isLoggedIn && <NavBar handleLogout={handleLogout} />}
       </header>
       <main className="container main">
         {isLoggedIn && (
@@ -65,9 +61,14 @@ const App = () => {
             element={<Login setAuth={setAuth} isLoggedIn={isLoggedIn} />}
           />
           <Route
+            path="login"
+            element={<Login setAuth={setAuth} isLoggedIn={isLoggedIn} />}
+          />
+          <Route
             path="register"
             element={<Register setAuth={setAuth} isLoggedIn={isLoggedIn} />}
           />
+          <Route path="about" element={<AboutDemo />} />
           <Route
             path="books"
             element={<BookList token={token} isLoggedIn={isLoggedIn} />}
