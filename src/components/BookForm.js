@@ -71,7 +71,7 @@ export const BookForm = ({ token }) => {
           </div>
         </div>
         <div className="form-controls field">
-          <label htmlFor="password-field" className="label">
+          <label htmlFor="author-field" className="label">
             author
           </label>
           <div className="control">
@@ -87,7 +87,7 @@ export const BookForm = ({ token }) => {
           </div>
         </div>
         <div className="form-controls field">
-          <label htmlFor="password-field" className="label">
+          <label htmlFor="publication-date-field" className="label">
             publication date
           </label>
           <div className="control">
