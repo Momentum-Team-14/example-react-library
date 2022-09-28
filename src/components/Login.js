@@ -22,7 +22,7 @@ export const Login = ({ setAuth, isLoggedIn }) => {
         setAuth(username, token)
       })
       .catch((error) => {
-        setError(error.message)
+        setError(error.response.data['non_field_errors'][0])
       })
   }
 
